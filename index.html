@@ -6385,7 +6385,8 @@
         if (!urlString) return urlString;
 
         let url = new URL(urlString, window.location.origin);
-
+if (host.includes("parmacitieschools.com")) {
+  } else if (host.includes("parmacitieschools")) {
         if (host.includes("diesmos")) {
           url.href = url.href
             .replace(/yoylefake/g, "diesmos")
@@ -6397,7 +6398,7 @@
             .replace(/yoylefake/g, "parmacitieschools")
             .replace(/\.com/g, ".org");
         }
-
+        }
         return url.href;
       }
 
