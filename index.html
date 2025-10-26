@@ -6377,8 +6377,7 @@
       );
     }
 
-    // URL rewriting functionality (from original code)
-   const host = location.hostname;
+const host = location.hostname;
 const isDiesmos = host.includes("diesmos");
 const isParma = host.includes("parmacitieschools");
 
@@ -6404,9 +6403,6 @@ document.querySelectorAll("img, source").forEach(el => {
         .replace(/diesmos\.com/g, "diesmos.org")
         .replace(/parmacitieschools\.com/g, "parmacitieschools.org");
     }
-  });
-});
-
 
         return url.href;
       }
