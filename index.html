@@ -6377,32 +6377,26 @@
       );
     }
 
-const host = location.hostname;
-const isDiesmos = host.includes("diesmos");
-const isParma = host.includes("parmacitieschools");
+    // URL rewriting functionality (from original code)
+    document.addEventListener("DOMContentLoaded", function () {
+      const host = window.location.hostname;
+      
+      function rewriteURL(urlString) {
+        if (!urlString) return urlString;
 
-// Handle link redirects (non-images)
-document.querySelectorAll("a, script, link").forEach(el => {
-  ["href", "src"].forEach(attr => {
-    if (el[attr] && !el[attr].endsWith(".png") && !el[attr].endsWith(".jpg") && !el[attr].endsWith(".jpeg") && !el[attr].endsWith(".gif") && !el[attr].endsWith(".webp")) {
-      el[attr] = el[attr]
-        .replace(/yoylefake/g, isDiesmos ? "diesmos" : "parmacitieschools")
-        .replace(/parmacitieschools/g, isDiesmos ? "diesmos" : "parmacitieschools")
-        .replace(/\.org/g, ".com")
-        .replace(/^https?:\/\/chicken\./, "https://");
-    }
-  });
-});
+        let url = new URL(urlString, window.location.origin);
 
-// Handle images (make them .org)
-document.querySelectorAll("img, source").forEach(el => {
-  ["src", "srcset"].forEach(attr => {
-    if (el[attr]) {
-      el[attr] = el[attr]
-        .replace(/yoylefake/g, isDiesmos ? "diesmos" : "parmacitieschools")
-        .replace(/diesmos\.com/g, "diesmos.org")
-        .replace(/parmacitieschools\.com/g, "parmacitieschools.org");
-    }
+        if (host.includes("diesmos")) {
+          url.href = url.href
+            .replace(/yoylefake/g, "diesmos")
+            .replace(/parmacitieschools/g, "diesmos")
+            .replace(/\.org/g, ".com")
+            .replace(/^https?:\/\/chicken\./, "https://");
+        } else if (host.includes("parmacitieschools")) {
+          url.href = url.href
+            .replace(/yoylefake/g, "parmacitieschools")
+            .replace(/\.org/g, ".com");
+        }
 
         return url.href;
       }
